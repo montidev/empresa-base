@@ -1,0 +1,10 @@
+#!/bin/sh
+# pre-push — corre los tests antes de que el push salga de la máquina.
+# Activar: git config core.hooksPath .githooks
+# Emergencia (desaconsejado): git push --no-verify
+echo "▶ pre-push: corriendo tests..."
+npm test || {
+  echo "✗ tests en rojo — push abortado. Arreglá, o 'git push --no-verify' (desaconsejado)."
+  exit 1
+}
+echo "✓ tests verdes — push permitido."
