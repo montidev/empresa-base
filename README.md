@@ -13,8 +13,23 @@ Docs: `montidev/organization-base` (el playbook) · `montidev/hub` (registry + p
 | **Ambientes = ramas** | `dev` (Dev) · `qa` (QA) · `main` (Prod). Cada una su URL en Vercel. |
 | **Flujo con PR** | feature → PR a `dev` → `qa` → `main`. Nadie toca prod a mano. |
 | **E2E con Playwright** | `tests/gol.spec.ts` prueba el botón de GOOOL. Free + durable. |
-| **CI** | `.github/workflows/e2e.yml` corre el test en cada push/PR. |
+| **CI** | `ci/e2e.yml` corre el test en cada push/PR (ver "Activar CI"). |
 | **Gate local** | `.githooks/pre-push` corre los tests antes de subir. |
+
+## Activar CI
+
+El workflow vive en `ci/e2e.yml` (y no en `.github/workflows/`) porque el token de `gh` usado
+para crear el repo no tenía el scope `workflow`. Para activarlo, una de dos:
+
+```bash
+# Opción A — habilitar el scope una vez (sirve para todos los repos):
+gh auth refresh -h github.com -s workflow
+mkdir -p .github/workflows && git mv ci/e2e.yml .github/workflows/e2e.yml
+git commit -m "ci: activo workflow e2e" && git push
+
+# Opción B — pegarlo desde la web: GitHub → Add file → New file →
+#   ruta .github/workflows/e2e.yml → pegar el contenido de ci/e2e.yml → commit.
+```
 
 ## Setup local
 
