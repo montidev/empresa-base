@@ -6,6 +6,9 @@ gratis y durable.
 
 Docs: `montidev/organization-base` (el playbook) · `montidev/hub` (registry + plantillas).
 
+🎬 **Ver el flujo en vivo** (visualizador para alumnos, con links a este repo):
+https://clase-html-navy.vercel.app/clases/flujo.html
+
 ## Qué demuestra
 
 | Pieza | Cómo |
